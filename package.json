@@ -1,0 +1,7 @@
+{
+  "name": "advent-of-code-2020",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "samwhale <samuel.estrella@formidable.com>",
+  "license": "MIT"
+}
