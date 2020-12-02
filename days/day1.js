@@ -59,8 +59,8 @@ const day1 = (dataSet, expectedResult = 2020) => {
 
 if (require.main === module) {
   const day1Data = readFile("../data/day1.txt")
-  .split("\n")
-  .map((entry) => parseInt(entry));
+    .split("\n")
+    .map((entry) => parseInt(entry));
   const dataSet = new Set(day1Data);
   day1(dataSet);
 }
