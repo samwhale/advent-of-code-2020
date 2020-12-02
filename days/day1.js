@@ -1,10 +1,6 @@
 /* day 1 */
 const { readFile } = require("../utils");
 
-const day1Data = readFile("../data/day1.txt")
-  .split("\n")
-  .map((entry) => parseInt(entry));
-
 /**
  *
  * @param {object} config The arguments to the fn
@@ -44,14 +40,13 @@ const findEntries = ({ set, expectedResult, nodes = [], n = 2 }) => {
   return [];
 };
 
-const day1 = (expectedResult = 2020) => {
+const day1 = (dataSet, expectedResult = 2020) => {
   console.log("-- Day 1 --");
 
-  const dataSet = new Set(day1Data);
   const result1 = findEntries({ set: dataSet, expectedResult }).reduce(
     (result, entry) => result * entry
   );
-  const result2 = findEntriesPart2({
+  const result2 = findEntries({
     set: dataSet,
     expectedResult,
     n: 3,
@@ -61,6 +56,14 @@ const day1 = (expectedResult = 2020) => {
   console.log(`answer to part 2: ${result2}`);
   console.log("-- End --");
 };
+
+if (require.main === module) {
+  const day1Data = readFile("../data/day1.txt")
+  .split("\n")
+  .map((entry) => parseInt(entry));
+  const dataSet = new Set(day1Data);
+  day1(dataSet);
+}
 
 module.exports = {
   day1,
