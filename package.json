@@ -3,5 +3,16 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "samwhale <samuel.estrella@formidable.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "prettier:write": "yarn prettier --write .",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.12.7",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.14.0",
+    "jest": "^26.6.3",
+    "prettier": "2.2.1"
+  }
 }

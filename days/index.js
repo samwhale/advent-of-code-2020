@@ -1,5 +1,5 @@
-const { day1 } = require('./day1');
+const { day1 } = require("./day1");
 
 module.exports = {
-  day1
-} 
+  day1,
+};

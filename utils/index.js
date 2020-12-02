@@ -1,5 +1,5 @@
-const readFile = require('./read-file');
+const readFile = require("./read-file");
 
 module.exports = {
-  ...readFile
-}
+  ...readFile,
+};
