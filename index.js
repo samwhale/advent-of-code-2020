@@ -20,12 +20,11 @@ const run = async () => {
       day2();
       break;
     default:
-      throw new Error('Please select a valid exercise number');
+      throw new Error("Please select a valid exercise number");
   }
 
   console.log("-- End --");
 };
-
 
 if (require.main === module) {
   run();
