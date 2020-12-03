@@ -1,5 +1,1 @@
-const readFile = require("./read-file");
-
-module.exports = {
-  ...readFile,
-};
+export * from "./read-file.js";

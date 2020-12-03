@@ -1,15 +1,15 @@
-const { readFile } = require("../utils/index");
+import { readFile } from "../utils/index.js";
 
 const CAPTURE_EXPRESSION = /^(\d+)-(\d+) (\w): (\w+)/;
 
-const isValidPart1 = (min, max, char, password) => {
+export const isValidPart1 = (min, max, char, password) => {
   const charRegexp = new RegExp(char, "g");
   const strippedPassword = password.match(charRegexp) || "";
 
   return strippedPassword.length >= min && strippedPassword.length <= max;
 };
 
-const isValidPart2 = (position1, position2, char, password) => {
+export const isValidPart2 = (position1, position2, char, password) => {
   const position1HasChar = password[position1 - 1] === char;
   const position2HasChar = password[position2 - 1] === char;
 
@@ -39,15 +39,10 @@ const getNumCorrectPasswords = (data) => {
   return { resultPart1: result1, resultPart2: result2 };
 };
 
-const day2 = () => {
+export const day2 = () => {
   const day2Data = readFile("../data/day2.txt").trim().split("\n");
   const { resultPart1, resultPart2 } = getNumCorrectPasswords(day2Data);
 
   console.log(`answer to part 1: ${resultPart1}`);
   console.log(`answer to part 2: ${resultPart2}`);
-};
-
-module.exports = {
-  day2,
-  getNumCorrectPasswords,
 };

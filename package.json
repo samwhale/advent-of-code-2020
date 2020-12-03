@@ -4,6 +4,7 @@
   "main": "index.js",
   "author": "samwhale <samuel.estrella@formidable.com>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "prettier:write": "yarn prettier --write .",
     "test": "jest"

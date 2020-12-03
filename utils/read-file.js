@@ -1,7 +1,10 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import { fileURLToPath } from "url";
+import path, { dirname } from "path";
 
-const readFile = (relativePath, encoding = "utf8") => {
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+export const readFile = (relativePath, encoding = "utf8") => {
   return fs.readFileSync(
     path.resolve(__dirname, relativePath),
     encoding,
@@ -11,8 +14,4 @@ const readFile = (relativePath, encoding = "utf8") => {
       return data;
     }
   );
-};
-
-module.exports = {
-  readFile,
 };

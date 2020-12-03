@@ -1,5 +1,4 @@
-/* day 1 */
-const { readFile } = require("../utils");
+import { readFile } from "../utils/index.js";
 
 /**
  *
@@ -7,7 +6,7 @@ const { readFile } = require("../utils");
  *
  * @returns {array | undefined} array of length n
  */
-const findEntries = ({ set, expectedResult, nodes = [], n = 2 }) => {
+export const findEntries = ({ set, expectedResult, nodes = [], n = 2 }) => {
   const target = nodes.reduce((a, b) => a - b, expectedResult);
 
   if (target <= 0 && nodes.length) {
@@ -40,7 +39,7 @@ const findEntries = ({ set, expectedResult, nodes = [], n = 2 }) => {
   return [];
 };
 
-const day1 = (expectedResult = 2020) => {
+export const day1 = (expectedResult = 2020) => {
   const day1Data = readFile("../data/day1.txt")
     .split("\n")
     .map((entry) => parseInt(entry));
@@ -57,13 +56,4 @@ const day1 = (expectedResult = 2020) => {
 
   console.log(`answer to part 1: ${result1}`);
   console.log(`answer to part 2: ${result2}`);
-};
-
-if (require.main === module) {
-  day1();
-}
-
-module.exports = {
-  day1,
-  findEntries,
 };

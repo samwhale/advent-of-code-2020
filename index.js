@@ -1,8 +1,8 @@
-const { prompt } = require("inquirer");
-const { day1, day2 } = require("./days");
+import inquirer from "inquirer";
+import { day1, day2 } from "./days/index.js";
 
-const run = async () => {
-  const { exerciseNumber } = await prompt([
+const askQuestions = async () => {
+  const { exerciseNumber } = await inquirer.prompt([
     {
       name: "exerciseNumber",
       type: "number",
@@ -10,22 +10,27 @@ const run = async () => {
     },
   ]);
 
+  return `day${exerciseNumber}`;
+};
+
+const run = async () => {
+  const exerciseNumber =
+    process.argv.length > 2 ? process.argv[2] : await askQuestions();
+
   console.log(`-- Day ${exerciseNumber} --`);
 
   switch (exerciseNumber) {
-    case 1:
+    case "day1":
       day1();
       break;
-    case 2:
+    case "day2":
       day2();
       break;
     default:
-      throw new Error("Please select a valid exercise number");
+      return console.log("That exercise does not exist.");
   }
 
   console.log("-- End --");
 };
 
-if (require.main === module) {
-  run();
-}
+run();
