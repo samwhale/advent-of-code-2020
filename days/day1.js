@@ -1,4 +1,4 @@
-import { readFile } from "../utils/index.js";
+import { readFile } from '../utils/index.js';
 
 /**
  *
@@ -40,8 +40,8 @@ export const findEntries = ({ set, expectedResult, nodes = [], n = 2 }) => {
 };
 
 export const day1 = (expectedResult = 2020) => {
-  const day1Data = readFile("../data/day1.txt")
-    .split("\n")
+  const day1Data = readFile('../data/day1.txt')
+    .split('\n')
     .map((entry) => parseInt(entry));
   const dataSet = new Set(day1Data);
 

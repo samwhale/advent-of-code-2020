@@ -1,10 +1,10 @@
-import { readFile } from "../utils/index.js";
+import { readFile } from '../utils/index.js';
 
 const CAPTURE_EXPRESSION = /^(\d+)-(\d+) (\w): (\w+)/;
 
 export const isValidPart1 = (min, max, char, password) => {
-  const charRegexp = new RegExp(char, "g");
-  const strippedPassword = password.match(charRegexp) || "";
+  const charRegexp = new RegExp(char, 'g');
+  const strippedPassword = password.match(charRegexp) || '';
 
   return strippedPassword.length >= min && strippedPassword.length <= max;
 };
@@ -40,7 +40,7 @@ const getNumCorrectPasswords = (data) => {
 };
 
 export const day2 = () => {
-  const day2Data = readFile("../data/day2.txt").trim().split("\n");
+  const day2Data = readFile('../data/day2.txt').trim().split('\n');
   const { resultPart1, resultPart2 } = getNumCorrectPasswords(day2Data);
 
   console.log(`answer to part 1: ${resultPart1}`);
