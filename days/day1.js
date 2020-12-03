@@ -40,8 +40,11 @@ const findEntries = ({ set, expectedResult, nodes = [], n = 2 }) => {
   return [];
 };
 
-const day1 = (dataSet, expectedResult = 2020) => {
-  console.log("-- Day 1 --");
+const day1 = (expectedResult = 2020) => {
+  const day1Data = readFile("../data/day1.txt")
+    .split("\n")
+    .map((entry) => parseInt(entry));
+  const dataSet = new Set(day1Data);
 
   const result1 = findEntries({ set: dataSet, expectedResult }).reduce(
     (result, entry) => result * entry
@@ -54,15 +57,10 @@ const day1 = (dataSet, expectedResult = 2020) => {
 
   console.log(`answer to part 1: ${result1}`);
   console.log(`answer to part 2: ${result2}`);
-  console.log("-- End --");
 };
 
 if (require.main === module) {
-  const day1Data = readFile("../data/day1.txt")
-    .split("\n")
-    .map((entry) => parseInt(entry));
-  const dataSet = new Set(day1Data);
-  day1(dataSet);
+  day1();
 }
 
 module.exports = {
