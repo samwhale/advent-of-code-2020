@@ -7,11 +7,13 @@
   "type": "module",
   "scripts": {
     "prettier:write": "yarn prettier --write .",
-    "test": "jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+  },
+  "jest": {
+    "transform": {}
   },
   "devDependencies": {
     "@babel/preset-env": "^7.12.7",
-    "babel-jest": "^26.6.3",
     "eslint": "^7.14.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.2.0",

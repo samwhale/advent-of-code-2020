@@ -20,7 +20,7 @@ export const isValidPart2 = (position1, position2, char, password) => {
   return position1HasChar || position2HasChar;
 };
 
-const getNumCorrectPasswords = (data) => {
+export const getNumCorrectPasswords = (data) => {
   let result1 = 0;
   let result2 = 0;
 
