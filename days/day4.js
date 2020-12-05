@@ -8,6 +8,23 @@ const HEIGHT_UNIT_REGEXP = /^(\d+)(cm|in)$/;
 const HAIR_COLOR_REGEXP = /^#[0-9a-f]{6}$/;
 const PASSPORT_ID_REGEXP = /^[0-9]{9}$/;
 
+const validateDate = (value, minYear, maxYear) => +value >= minYear && +value <= maxYear;
+
+const validateHeight = (value) => {
+  const result = value.match(HEIGHT_UNIT_REGEXP);
+  if (!result) {
+    return false;
+  }
+
+  const [_, height, unit] = result;
+
+  if (unit === 'cm') {
+    return +height >= 150 && +height <= 193;
+  } else if (unit === 'in') {
+    return +height >= 59 && +height <= 76;
+  }
+};
+
 const formatPassportData = (line) => {
   const data = line.split(SEPARATION_REGEXP);
 
@@ -16,26 +33,16 @@ const formatPassportData = (line) => {
     let valid = true;
     switch (key) {
       case 'byr':
-        valid = +value >= 1920 && +value <= 2002;
+        valid = validateDate(value, 1920, 2002);
         break;
       case 'iyr':
-        valid = +value >= 2010 && +value <= 2020;
+        valid = validateDate(value, 2010, 2020);
         break;
       case 'eyr':
-        valid = +value >= 2020 && +value <= 2030;
+        valid = validateDate(value, 2020, 2030);
         break;
       case 'hgt':
-        const result = value.match(HEIGHT_UNIT_REGEXP);
-        if (!result) {
-          valid = false;
-          break;
-        }
-        const [_, height, unit] = result;
-        if (unit === 'cm') {
-          valid = +height >= 150 && +height <= 193;
-        } else if (unit === 'in') {
-          valid = +height >= 59 && +height <= 76;
-        }
+        valid = validateHeight(value);
         break;
       case 'hcl':
         valid = !!value.match(HAIR_COLOR_REGEXP);
