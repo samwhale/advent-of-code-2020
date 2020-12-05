@@ -1,34 +1,10 @@
 import { readFile } from '../utils/read-file.js';
 
-export const binarySearch = (instructions, [min, max]) => {
-  const bounds = instructions.split('').reduce(
-    ([currentMin, currentMax], instruction) => {
-      const midPoint = (currentMax - currentMin) / 2;
-
-      if (instruction === 'F' || instruction === 'L') {
-        return [currentMin, Math.floor(midPoint) + currentMin];
-      } else if (instruction === 'B' || instruction === 'R') {
-        return [Math.ceil(midPoint) + currentMin, currentMax];
-      }
-
-      throw new Error('bruh - not a valid row instruction');
-    },
-    [min, max]
-  );
-
-  if (instructions[-1] === 'F' || instructions[-1] === 'L') {
-    return bounds[1];
-  } else {
-    return bounds[0];
-  }
-};
-
 export const getSeatId = (instructions) => {
-  const rowInstructions = instructions.slice(0, 7);
-  const colInstructions = instructions.slice(7);
+  let binaryInstructions = instructions.replace(/F|L/g, '0').replace(/B|R/g, '1');
 
-  const row = binarySearch(rowInstructions, [0, 127]);
-  const col = binarySearch(colInstructions, [0, 8]);
+  const row = parseInt(binaryInstructions.slice(0, 7), 2);
+  const col = parseInt(binaryInstructions.slice(7), 2);
 
   return row * 8 + col;
 };
