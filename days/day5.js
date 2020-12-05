@@ -1,7 +1,7 @@
 import { readFile } from '../utils/read-file.js';
 
-export const binarySearch = (instructions, [min, max]) =>
-  instructions.split('').reduce(
+export const binarySearch = (instructions, [min, max]) => {
+  const bounds = instructions.split('').reduce(
     ([currentMin, currentMax], instruction) => {
       const midPoint = (currentMax - currentMin) / 2;
 
@@ -11,12 +11,17 @@ export const binarySearch = (instructions, [min, max]) =>
         return [Math.ceil(midPoint) + currentMin, currentMax];
       }
 
-      console.log({ instruction });
-
       throw new Error('bruh - not a valid row instruction');
     },
     [min, max]
-  )[0];
+  );
+
+  if (instructions[-1] === 'F' || instructions[-1] === 'L') {
+    return bounds[1];
+  } else {
+    return bounds[0];
+  }
+};
 
 export const getSeatId = (instructions) => {
   const rowInstructions = instructions.slice(0, 7);
