@@ -9,30 +9,26 @@ export const getSeatId = (instructions) => {
   return row * 8 + col;
 };
 
-export const findMySeat = (takenSeats, minSeat, maxSeat) => {
+export const findMySeat = (takenSeats) => {
   const seatSet = new Set(takenSeats);
 
-  for (let item of takenSeats) {
-    const hasPrevEntry = seatSet.has(item - 1);
-    const hasNextEntry = seatSet.has(item + 1);
-
-    if (!hasPrevEntry && item !== minSeat) {
-      return item - 1;
-    } else if (!hasNextEntry && item !== maxSeat) {
+  for (let item of seatSet) {
+    if (!seatSet.has(item + 1) && seatSet.has(item + 2)) {
       return item + 1;
     }
   }
+
+  throw new Error('Every seat is taken.');
 };
 
 export const day5 = () => {
   const day5Data = readFile('../data/day5.txt').trim().split('\n');
 
   const seatAssignments = day5Data.map(getSeatId);
-  const maxSeat = Math.max(...seatAssignments);
-  const minSeat = Math.max(...seatAssignments);
+  const resultPart1 = Math.max(...seatAssignments);
 
-  const mySeat = findMySeat(seatAssignments, minSeat, maxSeat);
+  const mySeat = findMySeat(seatAssignments);
 
-  console.log(`answer to part 1: ${maxSeat}`);
+  console.log(`answer to part 1: ${resultPart1}`);
   console.log(`answer to part 2: ${mySeat}`);
 };
