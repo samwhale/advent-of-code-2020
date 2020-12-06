@@ -3,7 +3,7 @@ import { sumUniqueAnswers, sumMatchingAnswers } from '../day6.js';
 const TEST_DATA_1 = 'abc';
 const TEST_DATA_2 = 'a\nb\nc';
 const TEST_DATA_3 = 'ab\nac';
-const TEST_DATA_4 = 'a\na\na\na';
+const TEST_DATA_4 = 'a\na\na\na\n';
 const TEST_DATA_5 = 'b';
 
 describe('sumUniqueAnswers', () => {
