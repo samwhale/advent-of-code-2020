@@ -1,8 +1,5 @@
 import { readFile } from '../utils/read-file.js';
 
-// almost works :(
-const MATCHING_EXPRESSION = /(.)(.*)(?!\1)/g;
-
 export const sumUniqueAnswers = (block) => {
   const ansSet = new Set(block.replace(/\n/g, '').split(''));
 
