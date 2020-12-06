@@ -1,7 +1,7 @@
 import { readFile } from '../utils/read-file.js';
 
 export const getSeatId = (instructions) => {
-  let binaryInstructions = instructions.replace(/F|L/g, '0').replace(/B|R/g, '1');
+  const binaryInstructions = instructions.replace(/F|L/g, '0').replace(/B|R/g, '1');
 
   const row = parseInt(binaryInstructions.slice(0, 7), 2);
   const col = parseInt(binaryInstructions.slice(7), 2);
