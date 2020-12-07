@@ -64,7 +64,7 @@ export const day7 = () => {
   const day7Data = readFile('../data/day7.txt').trim().split('\n');
   const bagObject = buildBagObject(day7Data);
   const resultPart1 = countBagsContainingTarget(bagObject, 'shiny gold');
-  const resultPart2 = countNumberChildBags(bagObject, 'shiny gold').bind(bagObject);
+  const resultPart2 = countNumberChildBags(bagObject, 'shiny gold');
 
   console.log(`answer to part 1: ${resultPart1}`);
   console.log(`answer to part 2: ${resultPart2}`);
