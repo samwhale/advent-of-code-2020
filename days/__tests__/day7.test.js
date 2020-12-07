@@ -1,9 +1,4 @@
-import {
-  buildBagObject,
-  countBagsContainingTarget,
-  countContainingBagsForType,
-  countNumberChildBags,
-} from '../day7';
+import { buildBagObject, countBagsContainingTarget, checkBag, countNumberChildBags } from '../day7';
 
 const TEST_DATA_1 = `
 light red bags contain 1 bright white bag, 2 muted yellow bags.
@@ -56,18 +51,18 @@ describe('buildBagObject', () => {
   });
 });
 
-describe('countContainingBagsForType', () => {
-  it('should return 0 if the bagType and its children do not contain the target', () => {
-    expect(countContainingBagsForType(PARSED_TEST_DATA_1, 'shiny gold', 'dotted black')).toEqual(0);
-    expect(countContainingBagsForType(PARSED_TEST_DATA_1, 'shiny gold', 'dark olive')).toEqual(0);
+describe('checkBag', () => {
+  it('should return false if the bagType and its children do not contain the target', () => {
+    expect(checkBag(PARSED_TEST_DATA_1, 'shiny gold', 'dotted black')).toEqual(false);
+    expect(checkBag(PARSED_TEST_DATA_1, 'shiny gold', 'dark olive')).toEqual(false);
   });
 
-  it('should return 1 the bagType contains the target directly', () => {
-    expect(countContainingBagsForType(PARSED_TEST_DATA_1, 'shiny gold', 'bright white')).toEqual(1);
+  it('should return true the bagType contains the target directly', () => {
+    expect(checkBag(PARSED_TEST_DATA_1, 'shiny gold', 'bright white')).toEqual(true);
   });
 
-  it('should return 1 if a child (n levels deep) of the bagType contains the target', () => {
-    expect(countContainingBagsForType(PARSED_TEST_DATA_1, 'shiny gold', 'dark orange')).toEqual(1);
+  it('should return true if a child (n levels deep) of the bagType contains the target', () => {
+    expect(checkBag(PARSED_TEST_DATA_1, 'shiny gold', 'dark orange')).toEqual(true);
   });
 });
 

@@ -24,40 +24,39 @@ export const buildBagObject = (data) => {
   return bagObject;
 };
 
-export const countContainingBagsForType = (bagObject, target, bagType) => {
-  const innerBags = Object.keys(bagObject[bagType]);
+export const checkBag = (bagObject, target, currentType, cache = {}) => {
+  let bagContainsTarget = false;
 
-  if (!innerBags.length) {
-    return 0;
-  }
+  Object.keys(bagObject[currentType]).forEach((child) => {
+    if (child === target || checkBag(bagObject, target, child, cache)) {
+      cache[currentType] = true;
+      bagContainsTarget = true;
+    }
+  });
 
-  const innerBagsSet = new Set(innerBags);
-  if (innerBagsSet.has(target)) {
-    return 1;
-  }
-
-  return innerBags.some((childBagType) =>
-    countContainingBagsForType(bagObject, target, childBagType)
-  )
-    ? 1
-    : 0;
+  return bagContainsTarget;
 };
 
 export const countBagsContainingTarget = (bagObject, target) => {
-  const bagTypes = Object.keys(bagObject);
-  return bagTypes
-    .map((bagType) => countContainingBagsForType(bagObject, target, bagType))
-    .reduce((a, b) => a + b);
+  let count = 0;
+  Object.keys(bagObject).forEach((bagType) => {
+    if (checkBag(bagObject, target, bagType)) {
+      count += 1;
+    }
+  });
+
+  return count;
 };
 
 export const countNumberChildBags = (bagObject, target) => {
-  const bagTypes = Object.keys(bagObject[target]);
-  const numBagsContained = Object.values(bagObject[target]).reduce((a, b) => a + b, 0);
-  const numBagsChildrenContain = bagTypes
-    .map((bagType) => countNumberChildBags(bagObject, bagType) * bagObject[target][bagType])
-    .reduce((a, b) => a + b, 0);
+  const bagChildren = Object.entries(bagObject[target]);
+  let numBags = 0;
 
-  return numBagsContained + numBagsChildrenContain;
+  bagChildren.forEach(([bagType, count]) => {
+    numBags += count + count * countNumberChildBags(bagObject, bagType);
+  });
+
+  return numBags;
 };
 
 export const day7 = () => {
