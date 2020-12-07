@@ -36,7 +36,9 @@ export const countContainingBagsForType = (bagObject, target, bagType) => {
     return 1;
   }
 
-  return innerBags.some((bagName) => countContainingBagsForType(bagObject, target, bagName))
+  return innerBags.some((childBagType) =>
+    countContainingBagsForType(bagObject, target, childBagType)
+  )
     ? 1
     : 0;
 };
