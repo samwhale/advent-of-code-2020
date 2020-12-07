@@ -48,12 +48,18 @@ export const countBagsContainingTarget = (bagObject, target) => {
   return count;
 };
 
-export const countNumberChildBags = (bagObject, target) => {
+export const countNumberChildBags = (bagObject, target, cache = {}) => {
   const bagChildren = Object.entries(bagObject[target]);
   let numBags = 0;
 
   bagChildren.forEach(([bagType, count]) => {
-    numBags += count + count * countNumberChildBags(bagObject, bagType);
+    let childCount;
+    if (!cache[bagType]) {
+      childCount = count + count * countNumberChildBags(bagObject, bagType);
+      cache[bagType] = childCount;
+    }
+
+    numBags += childCount;
   });
 
   return numBags;
