@@ -5,3 +5,4 @@ export { day4 } from './day4.js';
 export { day5 } from './day5.js';
 export { day6 } from './day6.js';
 export { day7 } from './day7.js';
+export { day8 } from './day8.js';
