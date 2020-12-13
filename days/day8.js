@@ -6,7 +6,7 @@ const formatLine = (line) => {
   const match = line.match(CAPTURE_EXPRESSION);
   if (!match) throw new Error('Line could not be parsed');
 
-  return { instruction: match[1], value: parseInt(match[2]) };
+  return { instruction: match[1], value: parseInt(match[2], 10) };
 };
 
 export class Accumulator {

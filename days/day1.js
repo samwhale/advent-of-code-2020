@@ -40,9 +40,7 @@ export const findEntries = ({ set, expectedResult, nodes = [], n = 2 }) => {
 };
 
 export const day1 = (expectedResult = 2020) => {
-  const day1Data = readFile('../data/day1.txt')
-    .split('\n')
-    .map((entry) => parseInt(entry));
+  const day1Data = readFile('../data/day1.txt').split('\n').map(parseInt);
   const dataSet = new Set(day1Data);
 
   const result1 = findEntries({ set: dataSet, expectedResult }).reduce(
