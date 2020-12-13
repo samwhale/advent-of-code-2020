@@ -7,3 +7,4 @@ export { day6 } from './day6.js';
 export { day7 } from './day7.js';
 export { day8 } from './day8.js';
 export { day9 } from './day9.js';
+export { day10 } from './day10.js';

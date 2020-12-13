@@ -1,5 +1,5 @@
 import inquirer from 'inquirer';
-import { day1, day2, day3, day4, day5, day6, day7, day8, day9 } from './days/index.js';
+import { day1, day2, day3, day4, day5, day6, day7, day8, day9, day10 } from './days/index.js';
 
 const askQuestions = async () => {
   const { exerciseNumber } = await inquirer.prompt([
@@ -45,6 +45,9 @@ const run = async () => {
       break;
     case 'day9':
       day9();
+      break;
+    case 'day10':
+      day10();
       break;
     default:
       return console.log('That exercise does not exist.');
